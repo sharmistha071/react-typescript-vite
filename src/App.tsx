@@ -1,6 +1,7 @@
 import { PropsWithChildren } from "react";
 import "./App.css";
 import Blog from "./components/Blog";
+import Counter from "./components/Counter";
 
 type BoxProps = {
   // children: React.ReactNode; // this also works
@@ -27,6 +28,7 @@ function App() {
             <li>Blog</li>
           </ul>
         </div>
+        <Counter />
         <Blog title={"Daily Blog"} />
         <Box color="green">
           <p>Box inside a box</p>
