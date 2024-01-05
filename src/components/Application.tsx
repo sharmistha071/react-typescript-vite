@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Quotes from "./Quotes";
 
 export type Quote = {
@@ -9,7 +9,6 @@ export type Quote = {
 
 const Application = () => {
   const [quotes, setQuotes] = useState<Quote[]>([]);
-  const [count, setCount] = useState<number>(10);
 
   // const fetchQuotes = async () => {
   //   const response = await fetch("https://dummyjson.com/quotes");
@@ -17,6 +16,7 @@ const Application = () => {
   // };
 
   const fetchWithLimit = async (limit: number) => {
+    setQuotes([]);
     const response = await fetch(`https://dummyjson.com/quotes?limit=${limit}`);
     const data = await response.json();
     setQuotes(data.quotes);
@@ -29,11 +29,7 @@ const Application = () => {
   return (
     <>
       <h1>Quotes of the day!</h1>
-      <Quotes
-        count={count}
-        setCount={setCount}
-        handleClick={() => fetchWithLimit(count)}
-      >
+      <Quotes handleClick={fetchWithLimit}>
         <div>
           {quotes.length < 1 && <p>loading......</p>}
           {quotes.map((item) => (

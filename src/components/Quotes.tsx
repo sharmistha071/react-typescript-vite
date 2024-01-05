@@ -1,26 +1,20 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useState } from "react";
 
 type QuotesProps = {
-  count: number;
-  setCount: React.Dispatch<React.SetStateAction<number>>;
-  handleClick: React.MouseEventHandler<HTMLButtonElement>;
+  handleClick: (limit: number) => Promise<void>;
 };
 
-const Quotes = ({
-  children,
-  count,
-  setCount,
-  handleClick,
-}: PropsWithChildren<QuotesProps>) => {
+const Quotes = ({ children, handleClick }: PropsWithChildren<QuotesProps>) => {
+  const [count, setCount] = useState<number>(10);
   return (
     <section>
-      <div>
+      <div style={{ display: "flex" }}>
         <input
           type="number"
           value={count}
           onChange={(e) => setCount(e.target.valueAsNumber)}
         />
-        <button type="submit" onClick={handleClick}>
+        <button type="submit" onClick={() => handleClick(count)}>
           Load Quotes
         </button>
       </div>
