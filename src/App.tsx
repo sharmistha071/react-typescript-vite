@@ -16,7 +16,7 @@ const Box = ({ children, color = "red" }: PropsWithChildren<BoxProps>) => {
 };
 
 function App() {
-  // const [count, setCount] = useState(0);
+  // const [blogs, setBlogs] = useState([]);
 
   return (
     <>
